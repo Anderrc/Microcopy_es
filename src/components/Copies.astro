@@ -1,0 +1,47 @@
+---
+interface Props {
+	category: string;
+	textEs: string;
+	id: string;
+}
+const { category, textEs, id } = Astro.props;
+
+const idButtonEs = id + '-button-es';
+const idTextEs = id + '-text-es';
+---
+
+<div
+	class='bg-white shadow-md rounded-lg p-6 max-w-sm flex flex-col justify-between w-[446px] h-[300px] copies'
+>
+	<div class='text-gray-400 text-sm mb-2'>
+		{category}
+	</div>
+	<div class='text-xl font-bold text-gray-800 mb-2 copies-text' id={idTextEs}>
+		{textEs}
+	</div>
+
+	<button
+		class='text-gray-500 cursor-pointer justify-self-end self-end'
+		id={idButtonEs}>Copiar Texto</button
+	>
+</div>
+<script define:vars={{ idButtonEs, idTextEs }}>
+	// Encuentra todos los botones con la clase `alert` en la página.
+	const buttonEs = document.getElementById(idButtonEs);
+
+	const copyToClipBoard = idText => {
+		let texto = document.getElementById(idText)?.innerHTML;
+		navigator.clipboard
+			.writeText(texto ?? '')
+			.then(() => {
+				console.log('Texto copiado al portapapeles');
+			})
+			.catch(err => {
+				console.error('Error al copiar al portapapeles:', err);
+			});
+	};
+
+	buttonEs?.addEventListener('click', () => {
+		copyToClipBoard(idTextEs);
+	});
+</script>

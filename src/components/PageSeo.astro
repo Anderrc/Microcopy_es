@@ -1,0 +1,28 @@
+---
+interface Props {
+	schemeOrg: object;
+	title: string;
+	metaData: {
+		decription: string;
+		keyworks?: string;
+		img: string;
+	};
+}
+
+const { schemeOrg, title, metaData } = Astro.props;
+---
+
+<head>
+	<script type='application/ld+json' set:html={JSON.stringify(schemeOrg)} />
+	<title>{title}</title>
+	<meta name='description' content={metaData.decription} />
+	<meta property='og:title' content={title} />
+	<meta property='og:description' content={metaData.decription} />
+	<meta property='og:image' content={metaData.img} />
+	<meta name='twitter:card' content='summary_large_image' /><meta
+		name='twitter:title'
+		content={title}
+	/>
+	<meta name='twitter:description' content={metaData.decription} />
+	<meta name='twitter:image' content={metaData.img} />
+</head>
