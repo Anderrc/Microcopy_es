@@ -1,0 +1,61 @@
+---
+import 'remixicon/fonts/remixicon.css';
+import data from '../../public/copies.json';
+import Copies from '../components/Copies.astro';
+import Navbar from '../components/Navbar.astro';
+import Search from '../components/Search.astro';
+import Layout from '../layouts/Layout.astro';
+import PageSeo from '../components/PageSeo.astro';
+
+const categories = Object.keys(data);
+---
+
+<Layout title='Microcopy en Español'>
+	<PageSeo
+		slot='head'
+		title='Microcopy en Español'
+		metaData={{
+			decription:
+				'Descubre ejemplos de microcopy en español para mejorar la UX de tu sitio web o aplicación. Encuentra textos breves y efectivos para errores, confirmaciones y más.',
+			img: '',
+			keyworks:
+				'microcopy, UX writing, textos web, mensajes de error, confirmaciones, llamadas a la acción, Microcopy en Español',
+		}}
+		schemeOrg={{
+			'@context': 'https://schema.org',
+			'@type': 'WebPage',
+			name: 'Microcopy en Español',
+			description:
+				'Ejemplos de microcopy en español para mejorar la experiencia de usuario en sitios web y aplicaciones.',
+			url: 'https://www.tusitio.com',
+			inLanguage: 'es',
+			about: 'Microcopy, UX Writing, Textos cortos para sitios web',
+			creator: {
+				'@type': 'Organization',
+				name: 'Andercdev',
+			},
+			keywords: [
+				'microcopy',
+				'UX writing',
+				'textos web',
+				'mensajes de error',
+				'confirmaciones',
+				'llamadas a la acción',
+			],
+		}}
+	/>
+
+	<Navbar />
+	<main class='container w-full mx-auto mb-2'>
+		<Search />
+		<div class='flex justify-center flex-wrap gap-2'>
+			{
+				categories.map(category =>
+					data[category].map((item, index) => (
+						<Copies id={index} category={category} textEs={item} />
+					)),
+				)
+			}
+		</div>
+	</main>
+</Layout>
