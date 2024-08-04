@@ -13,7 +13,7 @@
 
 	const allCopies = document.getElementsByClassName('copies');
 
-	search?.addEventListener('keyup', e => {
+	search?.addEventListener('keyup', (e: any) => {
 		for (let i = 0; i < allCopies.length; i++) {
 			const elements = allCopies[i].getElementsByClassName('copies-text');
 			for (let j = 0; j < elements.length; j++) {

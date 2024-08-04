@@ -7,7 +7,7 @@ import Search from '../components/Search.astro';
 import Layout from '../layouts/Layout.astro';
 import PageSeo from '../components/PageSeo.astro';
 
-const categories = Object.keys(data);
+const categories: any[] = Object.keys(data);
 ---
 
 <Layout title='Microcopy en Español'>
@@ -50,8 +50,8 @@ const categories = Object.keys(data);
 		<Search />
 		<div class='flex justify-center flex-wrap gap-2'>
 			{
-				categories.map(category =>
-					data[category].map((item, index) => (
+				categories.map((category: any) =>
+					(data as any)[category].map((item: any, index: any) => (
 						<Copies id={index} category={category} textEs={item} />
 					)),
 				)
