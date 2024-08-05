@@ -28,6 +28,23 @@ const idTextEs = id + '-text-es';
 <script define:vars={{ idButtonEs, idTextEs }}>
 	// Encuentra todos los botones con la clase `alert` en la página.
 	const buttonEs = document.getElementById(idButtonEs);
+	let toastTimeout;
+
+	function showToast(message) {
+		const toastElement = document.getElementById('toast');
+		const toastTextElement = document.getElementById('toast-text');
+
+		toastTextElement.innerText = message;
+		toastElement.classList.remove('hide');
+		toastElement.classList.add('show');
+
+		// Ocultar el toast después de 3 segundos
+		clearTimeout(toastTimeout);
+		toastTimeout = setTimeout(() => {
+			toastElement.classList.remove('show');
+			toastElement.classList.add('hide');
+		}, 3000);
+	}
 
 	const copyToClipBoard = idText => {
 		let texto = document.getElementById(idText)?.innerHTML;
@@ -35,6 +52,7 @@ const idTextEs = id + '-text-es';
 			.writeText(texto ?? '')
 			.then(() => {
 				console.log('Texto copiado al portapapeles');
+				showToast('Texto Copiado al portapapeles');
 			})
 			.catch(err => {
 				console.error('Error al copiar al portapapeles:', err);

@@ -1,0 +1,45 @@
+---
+// Props para el componente
+---
+
+<!-- <div id='toast' class={`toast-container `}></div> -->
+<div id='toast' class='space-y-2 p-4 toast-container '>
+	<div
+		role='alert'
+		class='bg-green-100 dark:bg-green-900 border-l-4 border-green-500 dark:border-green-700 text-green-900 dark:text-green-100 p-2 rounded-lg flex items-center transition duration-300 ease-in-out hover:bg-green-200 dark:hover:bg-green-800 transform hover:scale-105'
+	>
+		<svg
+			stroke='currentColor'
+			viewBox='0 0 24 24'
+			fill='none'
+			class='h-5 w-5 flex-shrink-0 mr-2 text-green-600'
+			xmlns='http://www.w3.org/2000/svg'
+		>
+			<path
+				d='M13 16h-1v-4h1m0-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z'
+				stroke-width='2'
+				stroke-linejoin='round'
+				stroke-linecap='round'></path>
+		</svg>
+		<p class='text-xs font-semibold' id='toast-text'></p>
+	</div>
+</div>
+
+<style>
+	.toast-container {
+		position: fixed;
+		bottom: 20px;
+		right: 20px;
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+		opacity: 0;
+		transition: opacity 0.5s ease-in-out;
+	}
+
+	.toast-container.show {
+		opacity: 1;
+	}
+
+	.toast-container.hide {
+		opacity: 0;
+	}
+</style>
